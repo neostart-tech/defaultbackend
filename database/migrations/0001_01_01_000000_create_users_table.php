@@ -1,3 +1,4 @@
+// database/migrations/xxxx_create_users_table.php
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -6,10 +7,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
@@ -17,8 +15,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('role')->default('user');
-            $table->string('status')->default('active');
+            $table->string('role')->default('user'); 
+            $table->string('status')->default('active'); 
             $table->string('avatar')->nullable();
             $table->timestamp('last_login_at')->nullable();
             $table->rememberToken();
@@ -26,8 +24,7 @@ return new class extends Migration
         });
     }
 
-    
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('users');
     }

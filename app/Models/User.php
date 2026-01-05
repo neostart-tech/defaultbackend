@@ -17,6 +17,7 @@ class User extends Authenticatable
         'password',
         'role',
         'status',
+        'last_login_at',
         'avatar'
     ];
 
@@ -28,5 +29,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'last_login_at' => 'datetime',
+        'status' => 'string'
     ];
+
+    protected $attributes = [
+        'role' => 'user',
+        'status' => 'active'
+    ];
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isActive()
+    {
+        return $this->status === 'active';
+    }
 }
